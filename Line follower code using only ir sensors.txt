@@ -1,0 +1,58 @@
+#define LEFT_SENSOR A0
+#define RIGHT_SENSOR A1
+#define LEFT_MOTOR_FORWARD 5
+#define LEFT_MOTOR_BACKWARD 6
+#define RIGHT_MOTOR_FORWARD 9
+#define RIGHT_MOTOR_BACKWARD 10
+
+void setup() {
+    pinMode(LEFT_SENSOR, INPUT);
+    pinMode(RIGHT_SENSOR, INPUT);
+    pinMode(LEFT_MOTOR_FORWARD, OUTPUT);
+    pinMode(LEFT_MOTOR_BACKWARD, OUTPUT);
+    pinMode(RIGHT_MOTOR_FORWARD, OUTPUT);
+    pinMode(RIGHT_MOTOR_BACKWARD, OUTPUT);
+}
+
+void loop() {
+    int leftValue = digitalRead(LEFT_SENSOR);
+    int rightValue = digitalRead(RIGHT_SENSOR);
+    
+    if (leftValue == LOW && rightValue == LOW) {
+        moveForward();
+    } else if (leftValue == LOW && rightValue == HIGH) {
+        turnLeft();
+    } else if (leftValue == HIGH && rightValue == LOW) {
+        turnRight();
+    } else {
+        stopMotors();
+    }
+}
+
+void moveForward() {
+    digitalWrite(LEFT_MOTOR_FORWARD, HIGH);
+    digitalWrite(RIGHT_MOTOR_FORWARD, HIGH);
+    digitalWrite(LEFT_MOTOR_BACKWARD, LOW);
+    digitalWrite(RIGHT_MOTOR_BACKWARD, LOW);
+}
+
+void turnLeft() {
+    digitalWrite(LEFT_MOTOR_FORWARD, LOW);
+    digitalWrite(RIGHT_MOTOR_FORWARD, HIGH);
+    digitalWrite(LEFT_MOTOR_BACKWARD, LOW);
+    digitalWrite(RIGHT_MOTOR_BACKWARD, LOW);
+}
+
+void turnRight() {
+    digitalWrite(LEFT_MOTOR_FORWARD, HIGH);
+    digitalWrite(RIGHT_MOTOR_FORWARD, LOW);
+    digitalWrite(LEFT_MOTOR_BACKWARD, LOW);
+    digitalWrite(RIGHT_MOTOR_BACKWARD, LOW);
+}
+
+void stopMotors() {
+    digitalWrite(LEFT_MOTOR_FORWARD, LOW);
+    digitalWrite(RIGHT_MOTOR_FORWARD, LOW);
+    digitalWrite(LEFT_MOTOR_BACKWARD, LOW);
+    digitalWrite(RIGHT_MOTOR_BACKWARD, LOW);
+}
