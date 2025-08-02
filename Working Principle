@@ -1,0 +1,10 @@
+IR sensors detect the black line on a white surface.
+
+Based on sensor output, Arduino controls the direction of the motors.
+
+L298N Motor Driver drives the motors based on the signals from Arduino.
+
+Robot moves forward, left, or right to stay on the line.
+
+when ever object is present infornt robot it will stop and give signer to that object wait for 60 sec utill it will takenout that path of robot.
+
